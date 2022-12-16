@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios'
 
 function App () {
   const [uploadedFile, setUploadedFile] = useState ('');
- const [image, setImage] = useState('') 
 
   function handleFormSubmittion (e) {
     e.preventDefault ();
@@ -12,7 +11,7 @@ function App () {
     let formData = new FormData (form);
 
     // new line added
-    axios.post ('http://localhost:3001/api/add', formData);
+    axios.post ('http://localhost:4000/api/add', formData);
   }
 
    
@@ -20,19 +19,6 @@ function App () {
   function handleUploadedFile (e) {
     setUploadedFile (e.target.value);
   }
-
-  useEffect(() => {
-    const getImage = async () => {
-      const response = await fetch('http://localhost:3001/api/get')
-      const json = await response.json()
-      console.log(json)
-
-      if(response.ok) {
-        setImage(json.photo)
-      }
-    }
-    getImage()
-  })
 
   return (
     <React.Fragment>
@@ -53,10 +39,6 @@ function App () {
 
         <button type="submit">Submit Form</button>
       </form>
-
-      <div>
-        <img src={image}  alt='ssdsd'/>
-      </div>
     </React.Fragment>
   );
 }

@@ -18,11 +18,4 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api", fileRoute);
 
 // serve and database connection
-mongoose
-  .connect(process.env.ATLAS_URI)
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log(`http://localhost:${process.env.PORT}`);
-    });
-  })
-  .catch((error) => console.error(error));
+app.listen(process.env.PORT, () => console.log(`htpp://localhost:${process.env.PORT}`))
